@@ -1,4 +1,7 @@
 <?php
+
+// session_start();
+// $_SESSION['login'] = "ok";
 // Initialize status and message variables
 $status = '';
 $message = '';
@@ -162,8 +165,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </li>
 
 
+        <!-- <?php // if ($_SESSION['login'] == "ok") { ?>
+
+          <li><a href="Gallery.html">Logout</a></li>
+
+          <?php // } else { ?>
+            <li><a href="Gallery.html">Login</a></li>
+            <?php// }?> -->
+            
 
           <li><a href="Gallery.html">Gallery</a></li>
+
+      
+
+
+
           <li><a href="appointment.html">Appointment</a></li>
 
           <li><a class="active " href="contact.php">Contact Us</a></li>
