@@ -168,8 +168,9 @@ h6,
   display: block;
   position: absolute;
   left: 14px;
-  top: calc(100% + 30px);
+  top: calc(100% + 80px);
   margin: 0;
+  /* margin-right: 500px; */
   padding: 10px 0;
   z-index: 99;
   opacity: 0;
@@ -185,15 +186,17 @@ h6,
 
 .navbar .dropdown ul li {
   min-width: 200px;
+  /* width:auto; */
   background-color: rgb(250, 234, 237);
   border-radius:5px;
+  /* margin-right: 500px; */
 }
 
 .navbar .dropdown ul a {
   padding: 5px 5px;
   font-size: 14px;
   text-transform: none;
-  color: #1c3745;
+  color: #010d13;
 }
 
 .navbar .dropdown ul a i {
@@ -204,7 +207,8 @@ h6,
 .navbar .dropdown ul .active:hover,
 .navbar .dropdown ul li:hover>a {
   color:  #030c0f;
-  background-color: rgb(235, 69, 96);
+  background-color: rgb(253, 123, 162);
+  
 }
 
 .navbar .dropdown:hover>ul {
@@ -224,24 +228,33 @@ h6,
   opacity: 1;
   top: 0;
   left: 100%;
+
   visibility: visible;
 }
 
+/* .navbar .dropdown .dropdownn:hover>ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+ 
+  visibility: visible;
+} */
+
 @media (max-width: 1366px) {
-  .navbar .dropdown .dropdown ul {
+  /* .navbar .dropdown .dropdown ul {
     left: -90%;
   }
 
   .navbar .dropdown .dropdown:hover>ul {
     left: -100%;
-  }
+  } */
 }
 
 /**
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #3d2e7e;
+  color: #f70980;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -284,7 +297,7 @@ h6,
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-color: #c9cefd;
+  background-color: #f0e4ec;
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -292,14 +305,15 @@ h6,
 .navbar-mobile a,
 .navbar-mobile a:focus {
   padding: 10px 20px;
-  font-size: 15px;
-  color: #dd0fb0;
+  font-size: 17px;
+  color: #f8047eb7;
+  font-weight: 900;
 }
 
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #f713be;
+  color: #f71eb5;
 }
 
 .navbar-mobile .getstarted,
@@ -315,7 +329,7 @@ h6,
   z-index: 99;
   opacity: 1;
   visibility: visible;
-  background: #fff;
+  background: #f0e4ec;
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
 }
 
@@ -334,7 +348,7 @@ h6,
 .navbar-mobile .dropdown ul a:hover,
 .navbar-mobile .dropdown ul .active:hover,
 .navbar-mobile .dropdown ul li:hover>a {
-  color: #68A4C4;
+  color: #01070a;
 }
 
 .navbar-mobile .dropdown>.dropdown-active {

@@ -30,13 +30,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Moderna
-  * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
-  * Updated: May 7 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -55,7 +49,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active " href="index.html">Home</a></li>
+          <li><a class="active" href="index.html">Home</a></li>
 
           <li><a href="about.html">About</a></li>
 
@@ -78,12 +72,12 @@
 
               <li class="dropdown"><a href="#"><span>Therapy</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href=" ">Pediatric Physiotherapy</a></li>
-                  <li><a href=" ">Cognitive Behaviour Therapy (CBT)</a></li>
+                  <li><a href="pediatric _therapy.html">Pediatric Physiotherapy</a></li>
+                  <li><a href="CBT_therapy.html">Cognitive Behaviour Therapy (CBT)</a></li>
                   <li><a href="speech_therapy.html">Speech Language Therapy</a></li>
-                  <li><a href="speeachthy.html">Articulation Therapy</a></li>
+                  <li><a href="Articulation_Therapy.html">Articulation Therapy</a></li>
                   <li><a href="speech_therapy">Speech Therapy for Autism and ADHD</a></li>
-                  <li><a href=" ">Autism Spectrum Disorder</a></li>
+                  <li><a href="autism _therapy.html">Autism Spectrum Disorder</a></li>
                   <li><a href="speech_therapy.html">Speech Delay</a></li>
                   <li><a href="speech_therapy.html">Speech therapy for communication disorders</a></li>
                   <li><a href="speech_therapy.html">Speech Therapy For Voice Disorder</a></li>
@@ -107,9 +101,9 @@
 
 
           <li><a href="Gallery.html">Gallery</a></li>
-          <li><a class="active " href="appointment.html">Appointment</a></li>
+          <li><a class="active" href="appointment.html">Appointment</a></li>
 
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="contact.php">Contact Us</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -145,26 +139,32 @@
         <!-- <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p> -->
       </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <form role="form" class="email-form" id="form" onclick="app()" action="thanks.html">
+
+      
+       <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <form role="form" class="email-form" onclick="app()" id="form" action="thanks.html">
           <div class="row">
-            <div class="col-md-4 form-group">
+            <div class="col-md-6 form-group">
+              
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
             </div>
-            <div class="col-md-4 form-group mt-3 mt-md-0">
+
+            <div class="col-md-6 form-group">
+              <input type="datetime-local" name="date" class="form-control datepicker" id="date" placeholder="Date of Appointment" required="">
+            </div>
+            <div class="col-md-6 form-group mt-3 mt-md-0">
               <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
             </div>
-            <div class="col-md-4 form-group mt-3 mt-md-0">
+            
+            <div class="col-md-6 form-group mt-3 mt-md-0">
               <input type="text" class="form-control" name="subject" id="mobile" placeholder="Mobile no." required>
-
-            </div>
+              
+                       
           </div>
-          <div class="row">
-            <!-- <div class="col-md-4 form-group mt-3">
-            <input type="datetime-local" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required="">
-          </div> -->
-            <div class="col-md-6 form-group mt-3">
+          
+             <div class="col-md-6 form-group mt-3">
               <select name="department" id="treatment" class="form-select" required="">
                 <option value="">-------Select Treatment---------</option>
                 <option value="Department 1">Stuttering</option>
@@ -206,12 +206,14 @@
           </div>
 
           <br>
-          <br>
+         
 
-            <div class="button" button type="submit"
-            style="width: 200px; text-align: center; margin: auto; background-color: rgb(233, 75, 101);">Make an Appointment</div>
+          <div class="button" style="text-align: center;width: 250px; height:70px; margin: auto;font-size:15px; font-weight: 700;" ><button type="submit">Make an Appointment</button></div>
+<!-- <div class="button" button type="submit" onclick="app()" style="width: 200px; text-align: center; margin: auto; background-color: rgb(233, 75, 101);">Make an Appointment</div> -->
 
-           </div>
+
+            
+           <!-- </div> -->
         </form>
         
 
@@ -240,7 +242,7 @@
                 <div class="info-box">
                   <i class="bx bx-envelope"></i>
                   <h3>Email Us</h3>
-                  <p>amulya.rehabcenter08@gmail.com</p>
+                  <p>support@amulyarehabilationcenter.com <br>amulya.rehabcenter08@gmail.com</p>
                 </div>
               </div>
               <div class="col-md-4">
@@ -291,31 +293,48 @@
              <script src="https://smtpjs.com/v3/smtp.js"></script>
 
             <script>
-
+         
             
-            function app()
-              
-            {
+            function app(){
+          
+
 
               var name=document.getElementById("name").value;
-              var Email=document.getElementById("email").value;
+              var Email=document.getElementById("date").value;
               var subject=document.getElementById("mobile").value;
               var message=document.getElementById("treatment").value;
               var message=document.getElementById("therapy").value;
-              var message=document.getElementById("message").value;
+              
+
+              // if( name==""|| Email==""|| subject==""|| message=="")
+
+              {
+                // alert( "All fields are mandatory.");
+              }
+              // var name=document.getElementById("name").value;
+              // var name=document.getElementById ("name").value;
+              // var name=document.getElementById("date").value;
+              // var Email=document.getElementById("email").value;
+              // var subject=document.getElementById("mobile").value;
+              // var message=document.getElementById("treatment").value;
+              // var message=document.getElementById("therapy").value;
+              // var message=document.getElementById("message").value;
              
 
-              if( name==""|| Email==""|| mobile==""|| treatment==""|| therapy==""|| message=="")
+              if( name==""|| date=="" || Email==""|| mobile==""|| treatment==""|| therapy=="")
+
+              
 
               {
                 // alert( "All fields are mandatory.");
               }
 
             }
-
-            // {
-            //   alert("your request has been submitted successfully")
+            
+            //  {
+            //    alert("your request has been submitted successfully")
             // }
+
 
           </script>
 
