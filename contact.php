@@ -107,18 +107,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <h1 class="text-light"><a href="index.html"><span></span></a></h1>
+        <h1 class="text-light"><a href="index.php"><span></span></a></h1>
 
 
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="index.html"><img src="assets/img/logo_1.png" width="150px" height="350px" alt=""></a>
+        <a href="index.php"><img src="assets/img/logo_1.png" width="150px" height="350px" alt=""></a>
       </div>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active " href="index.html">Home</a></li>
+          <li><a class="active " href="index.php">Home</a></li>
 
-          <li><a href="about.html">About</a></li>
+          <li><a href="about.php">About</a></li>
 
 
           <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down"></i></a>
@@ -128,10 +128,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <ul>
 
-                  <li><a href="stuttering.html">Stuttering</a></li>
-                  <li><a href="speech_therapy.html">Speech and Language Therapy</a></li>
-                  <li><a href="autism _therapy.html">Autism Spectrum Disorder (ASD)</a></li>
-                  <li><a href="adhd.html">ADHD(Attention Deficit Hyperactive Disorder)</a></li>
+                  <li><a href="stuttering.php">Stuttering</a></li>
+                  <li><a href="speech_therapy.php">Speech and Language Therapy</a></li>
+                  <li><a href="autism _therapy.php">Autism Spectrum Disorder (ASD)</a></li>
+                  <li><a href="adhd.php">ADHD(Attention Deficit Hyperactive Disorder)</a></li>
 
                 </ul>
               </li>
@@ -139,20 +139,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
               <li class="dropdown"><a href="#"><span>Therapy</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="pediatric _therapy.html">Pediatric Physiotherapy</a></li>
-                  <li><a href="CBT_therapy.html">Cognitive Behaviour Therapy (CBT)</a></li>
-                  <li><a href="speech_therapy.html">Speech Language Therapy</a></li>
-                  <li><a href="Articulation_Therapy.html">Articulation Therapy</a></li>
-                  <li><a href="adhd.html">Speech Therapy for Autism and ADHD</a></li>
-                  <li><a href="autism _therapy.html">Autism Spectrum Disorder</a></li>
-                  <li><a href="speech_therapy.html">Speech Delay</a></li>
-                  <li><a href="speech_therapy.html">Speech therapy for communication disorders</a></li>
-                  <li><a href="speech_therapy.html">Speech Therapy For Voice Disorder</a></li>
-                  <li><a href="speech_therapy.html">Speech Therapy for Speech Disorder</a></li>
-                  <li><a href="speech_therapy.html">Speech therapy for Autism</a></li>
-                  <li><a href="speech_therapy.html">Speech Therapy for children and infants</a></li>
-                  <li><a href="speech_therapy.html">Speech Therapy for children with delayed speech and language</a></li>
-                  <li><a href="adhd.html">ADHD (Attention Deficit Hyperactive Disorder)</a></li>
+                  <li><a href="pediatric _therapy.php">Pediatric Physiotherapy</a></li>
+                  <li><a href="CBT_therapy.php">Cognitive Behaviour Therapy (CBT)</a></li>
+                  <li><a href="speech_therapy.php">Speech Language Therapy</a></li>
+                  <li><a href="Articulation_Therapy.php">Articulation Therapy</a></li>
+                  <li><a href="adhd.php">Speech Therapy for Autism and ADHD</a></li>
+                  <li><a href="autism _therapy.php">Autism Spectrum Disorder</a></li>
+                  <li><a href="speech_therapy.php">Speech Delay</a></li>
+                  <li><a href="speech_therapy.php">Speech therapy for communication disorders</a></li>
+                  <li><a href="speech_therapy.php">Speech Therapy For Voice Disorder</a></li>
+                  <li><a href="speech_therapy.php">Speech Therapy for Speech Disorder</a></li>
+                  <li><a href="speech_therapy.php">Speech therapy for Autism</a></li>
+                  <li><a href="speech_therapy.php">Speech Therapy for children and infants</a></li>
+                  <li><a href="speech_therapy.php">Speech Therapy for children with delayed speech and language</a></li>
+                  <li><a href="adhd.php">ADHD (Attention Deficit Hyperactive Disorder)</a></li>
 
 
                 </ul>
@@ -166,15 +166,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-          <li><a href="Gallery.html">Gallery</a></li>
-          <li><a href="appointment.html">Appointment</a></li>
+          <li><a href="Gallery.php">Gallery</a></li>
+          <li><a href="appointment.php">Appointment</a></li>
 
           <li><a class="active " href="contact.php">Contact Us</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <h4 class="button"><a href="appointment.html" style="color: white;">Appointment</a></h4>
+      <h4 class="button"><a href="appointment.php" style="color: white;">Appointment</a></h4>
 
     </div>
   </header><!-- End Header -->
