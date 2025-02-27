@@ -58,7 +58,42 @@ ob_end_flush();
 
 ?>
 
-<div class="login-container">
+<div class="container mt-0">
+    <div class="row mt-0">
+        <div class="col-md-6 offset-md-3">
+
+            <div class="card">
+                <h2 class="text-center text-dark mt-0">Admin Login</h2>
+                <form class="card-body cardbody-color " action="login.php" method="POST">
+
+                    <div class="text-center">
+                        <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                            width="150px" alt="profile">
+                    </div>
+
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="Username" name="username" aria-describedby="emailHelp"
+                            placeholder="User Name">
+                    </div>
+                    <div class="mb-2">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                    </div>
+                    <div class="text-center"><button type="submit" class="btn btn-light px-5 mb-5 w-100 border">Login</button></div>
+                    <!-- <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not
+                        Registered? <a href="#" class="text-dark fw-bold"> Create an
+                            Account</a>
+                    </div> -->
+                    <div id="emailHelp" class="form-text text-center mb-1 text-dark">Forgot Password <a href="#" class="text-dark fw-bold"> Reset Password</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="login-container">
     <h2>Admin Login</h2>
     <form action="login.php" method="POST">
         <label for="username">Username</label>
@@ -69,6 +104,6 @@ ob_end_flush();
 
         <button type="submit">Login</button>
     </form>
-</div>
+</div> -->
 
 <?php include 'include/footer.php'; ?>
