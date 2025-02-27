@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +75,15 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active " href="index.php">Home</a></li>
+          <?php
+
+          if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+            echo '
+          <li><a href="appointmentData.php">Appointment List</a></li><li>
+          <li><a href="disable_slot.php">Block Date/Time</a></li>
+          <li><a href="logout.php">Logout</a></li><li>';
+          } else {
+            echo '<li><a class="active " href="index.php">Home</a></li>
 
           <li><a href="about.php">About</a></li>
 
@@ -123,7 +136,11 @@
           <li><a href="Gallery.php">Gallery</a></li>
           <li><a href="appointment.php">Appointment</a></li>
 
-          <li><a class="active " href="contact.php">Contact Us</a></li>
+          <li><a class="active " href="contact.php">Contact Us</a></li>';
+          }
+          ?>
+
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

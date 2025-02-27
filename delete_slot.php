@@ -1,4 +1,12 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!($_SESSION['role'] == 'admin')) {
+    header('Location: index.php');
+    exit();
+}
 require_once "logics/dbConnection.php";
 
 if (isset($_GET['id'])) {
@@ -12,7 +20,7 @@ if (isset($_GET['id'])) {
     } else {
         echo "<div class='alert alert-danger'>Error deleting slot.</div>";
     }
-    
+
     mysqli_stmt_close($stmt);
 }
 

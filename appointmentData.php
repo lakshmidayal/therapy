@@ -1,4 +1,13 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+if (!($_SESSION['role'] == 'admin')) {
+  header('Location: index.php');
+  exit();
+}
+// echo '<script>alert(' . $_SESSION . ')</script>';
 include "include/header.php";
 require_once 'logics/dbConnection.php';
 
