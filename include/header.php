@@ -26,9 +26,24 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    .disabled-date {
+      background-color: lightcoral !important;
+    }
+
+    .booked-date {
+      background-color: lightyellow !important;
+    }
+
+    .available-date {
+      background-color: lightgreen !important;
+    }
+  </style>
+
 
   <style>
     .navbar-mobile ul {
