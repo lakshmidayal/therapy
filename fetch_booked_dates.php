@@ -4,7 +4,7 @@ require_once 'logics/dbConnection.php';
 $bookedSlots = [];
 
 // Fetch booked appointments
-$query = "SELECT date, TIME_FORMAT(time, '%H:%i') AS time FROM appointment";
+$query = "SELECT date, TIME_FORMAT(time, '%H:%i') AS time FROM appointment where isDeleted <> 'Y'";
 $result = mysqli_query($con, $query);
 
 while ($row = mysqli_fetch_assoc($result)) {

@@ -6,32 +6,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $time = isset($_POST['time']) && $_POST['time'] !== '' ? mysqli_real_escape_string($con, $_POST['time']) : null;
     $reason = mysqli_real_escape_string($con, $_POST['reason']);
 
-    // Check if the slot is already disabled
-    $checkQuery = "SELECT COUNT(*) as count FROM disabled_slots WHERE date = ? AND (time IS NULL OR time = ?)";
-    $stmtCheck = mysqli_prepare($con, $checkQuery);
-    mysqli_stmt_bind_param($stmtCheck, "ss", $date, $time);
-    mysqli_stmt_execute($stmtCheck);
-    $result = mysqli_stmt_get_result($stmtCheck);
-    $row = mysqli_fetch_assoc($result);
+    // Check if an appointment already exists for the selected date (regardless of time)
+    $checkDateQuery = "SELECT COUNT(*) as count FROM appointment WHERE date = ? AND isDeleted <> 'Y'";
+    $stmtCheckDate = mysqli_prepare($con, $checkDateQuery);
+    mysqli_stmt_bind_param($stmtCheckDate, "s", $date);
+    mysqli_stmt_execute($stmtCheckDate);
+    $resultDate = mysqli_stmt_get_result($stmtCheckDate);
+    $rowDate = mysqli_fetch_assoc($resultDate);
 
-    if ($row['count'] > 0) {
-        echo "<div class='alert alert-warning'>This date or time is already disabled!</div>";
+    if ($rowDate['count'] > 0) {
+        echo "<div class='alert alert-warning'>An appointment already exists on this date. Please delete the existing appointment first.</div>";
     } else {
-        // Insert disabled slot
-        $query = "INSERT INTO disabled_slots (date, time, reason) VALUES (?, ?, ?)";
-        $stmt = mysqli_prepare($con, $query);
-        mysqli_stmt_bind_param($stmt, "sss", $date, $time, $reason);
+        // Check if an appointment already exists for the selected date and time
+        $checkAppointmentQuery = "SELECT COUNT(*) as count FROM appointment WHERE date = ? AND time = ? AND isDeleted <> 'Y'";
+        $stmtCheckAppointment = mysqli_prepare($con, $checkAppointmentQuery);
+        mysqli_stmt_bind_param($stmtCheckAppointment, "ss", $date, $time);
+        mysqli_stmt_execute($stmtCheckAppointment);
+        $resultAppointment = mysqli_stmt_get_result($stmtCheckAppointment);
+        $rowAppointment = mysqli_fetch_assoc($resultAppointment);
 
-        if (mysqli_stmt_execute($stmt)) {
-            echo "<div class='alert alert-success'>Slot disabled successfully!</div>";
+        if ($rowAppointment['count'] > 0) {
+            echo "<div class='alert alert-warning'>An appointment already exists for this date and time. Please delete the existing appointment first.</div>";
         } else {
-            echo "<div class='alert alert-danger'>Error: " . mysqli_error($con) . "</div>";
+            // Check if the slot is already disabled
+            $checkQuery = "SELECT COUNT(*) as count FROM disabled_slots WHERE date = ? AND (time IS NULL OR time = ?)";
+            $stmtCheck = mysqli_prepare($con, $checkQuery);
+            mysqli_stmt_bind_param($stmtCheck, "ss", $date, $time);
+            mysqli_stmt_execute($stmtCheck);
+            $result = mysqli_stmt_get_result($stmtCheck);
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row['count'] > 0) {
+                echo "<div class='alert alert-warning'>This date or time is already disabled!</div>";
+            } else {
+                // Insert disabled slot
+                $query = "INSERT INTO disabled_slots (date, time, reason) VALUES (?, ?, ?)";
+                $stmt = mysqli_prepare($con, $query);
+                mysqli_stmt_bind_param($stmt, "sss", $date, $time, $reason);
+
+                if (mysqli_stmt_execute($stmt)) {
+                    echo "<div class='alert alert-success'>Slot disabled successfully!</div>";
+                } else {
+                    echo "<div class='alert alert-danger'>Error: " . mysqli_error($con) . "</div>";
+                }
+
+                mysqli_stmt_close($stmt);
+            }
+
+            mysqli_stmt_close($stmtCheck);
         }
 
-        mysqli_stmt_close($stmt);
+        mysqli_stmt_close($stmtCheckAppointment);
     }
 
-    mysqli_stmt_close($stmtCheck);
+    mysqli_stmt_close($stmtCheckDate);
 }
 
 // Fetch disabled slots for table display
@@ -39,6 +67,8 @@ $disabledSlots = mysqli_query($con, "SELECT id, date, time, reason FROM disabled
 
 mysqli_close($con);
 include "include/header.php";
+
+
 ?>
 
 

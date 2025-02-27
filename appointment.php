@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       echo '<div class="alert alert-danger">Sorry, Doctor Not Available!</div>';
     } else {
       // ✅ Check if the selected date-time is already booked
-      $checkQuery = "SELECT * FROM appointment WHERE date = ? AND time = ?";
+      $checkQuery = "SELECT * FROM appointment WHERE date = ? AND time = ? AND isDeleted <> 'Y'";
       $stmtCheck = mysqli_prepare($con, $checkQuery);
       mysqli_stmt_bind_param($stmtCheck, "ss", $date, $time);
       mysqli_stmt_execute($stmtCheck);
