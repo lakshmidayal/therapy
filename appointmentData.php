@@ -28,10 +28,13 @@ $result = mysqli_query($con, $query);
       <?php
       $sno = 1;
       while ($row = mysqli_fetch_assoc($result)) {
+        // Format the date to the desired format (DD/MM/YY - HH:MM)
+        $formatted_date = date("d/m/y - H:i", strtotime($row['date']));
+
         echo "<tr>";
         echo "<th scope='row'>" . $sno . "</th>";
         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['date']) . "</td>";
+        echo "<td>" . $formatted_date . "</td>";  // Display the formatted date
         echo "<td>" . htmlspecialchars($row['email']) . "</td>";
         echo "<td>" . htmlspecialchars($row['mob_no']) . "</td>";
         echo "<td>" . htmlspecialchars($row['treatment']) . "</td>";

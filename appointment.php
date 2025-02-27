@@ -4,7 +4,7 @@ require_once 'logics/dbConnection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Getting form values
   $name = mysqli_real_escape_string($con, $_POST['name']);
-  $date = mysqli_real_escape_string($con, $_POST['date']);
+  $date = mysqli_real_escape_string($con, $_POST['date']);  // 'date' will be in format 'YYYY-MM-DDTHH:MM'
   $email = mysqli_real_escape_string($con, $_POST['email']);
   $mob_no = mysqli_real_escape_string($con, $_POST['subject']);
   $treatment = mysqli_real_escape_string($con, $_POST['department']);
@@ -12,27 +12,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $message = mysqli_real_escape_string($con, $_POST['message']);
 
   // SQL query to insert the data into the appointment table
+  // Use prepared statements for better security (prevent SQL injection)
   $sql = "INSERT INTO appointment (name, date, email, mob_no, treatment, therapy, message) 
-            VALUES ('$name', '$date', '$email', '$mob_no', '$treatment', '$therapy', '$message')";
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-  if (mysqli_query($con, $sql)) {
-    echo '<div class="alert alert-success" role="alert">
-  Appointment successfully created!
-</div>';
-    // echo "Appointment successfully created!";
-    // You can redirect to the 'thanks.php' page if you want:
-    // header("Location: thanks.php");
+  if ($stmt = mysqli_prepare($con, $sql)) {
+    // Bind the parameters to the query
+    mysqli_stmt_bind_param($stmt, "sssssss", $name, $date, $email, $mob_no, $treatment, $therapy, $message);
+
+    // Execute the statement
+    if (mysqli_stmt_execute($stmt)) {
+      echo '<div class="alert alert-success" role="alert">
+                    Appointment successfully created!
+                  </div>';
+      // Optionally redirect to another page after success
+      // header("Location: thanks.php");
+    } else {
+      echo '<div class="alert alert-danger" role="alert">
+                    Cannot book appointment right now!
+                  </div>';
+    }
+
+    // Close the statement
+    mysqli_stmt_close($stmt);
   } else {
-    echo '    <div class="alert alert-danger" role="alert">
-  Cannot book appointment right now!
-</div>';
-    //echo "Error: " . $sql . "<br>" . mysqli_error($con);
+    echo 'Error: Unable to prepare SQL query!';
   }
 }
 
 mysqli_close($con);
 ?>
-<?php
+
 include "include/header.php";
 ?>
 
@@ -70,6 +80,7 @@ include "include/header.php";
         <div class="col-md-6 form-group">
           <input type="datetime-local" name="date" class="form-control datepicker" id="date" placeholder="Date of Appointment" required>
         </div>
+
 
         <div class="col-md-6 form-group mt-3 mt-md-0">
           <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
