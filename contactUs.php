@@ -1,64 +1,57 @@
 <?php
-
 // session_start();
 // $_SESSION['login'] = "ok";
-// Initialize status and message variables
 $status = '';
 $message = '';
-
+require_once 'logics/dbConnection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Collect form data
-  $name = htmlspecialchars(trim($_POST['name']));
-  $email = htmlspecialchars(trim($_POST['email']));
-  $subject = htmlspecialchars(trim($_POST['subject']));
-  $message_content = htmlspecialchars(trim($_POST['message']));
-
-
-
-  // Validate the form inputs
-  if (empty($name) || empty($email) || empty($subject) || empty($message_content)) {
-    // If any field is empty, show an error message
-    $status = 'error';
-    $message = 'All fields are required. Please fill out the form completely.';
-  } else {
-    // Recipient email address
-    // $to = "amulya.rehabcenter08@gmail.com";
-
-    $to = "support@amulyarehabilationcenter.com";
-
-    // Email subject
-    $email_subject = "New Message from $name - $subject";
-
-    // Email body
-    $email_body = "You have received a new message from your website contact form.\n\n";
-    $email_body .= "Here are the details:\n\n";
-    $email_body .= "Name: $name\n";
-    $email_body .= "Email: $email\n";
-    $email_body .= "Subject: $subject\n";
-    $email_body .= "Message:\n$message_content\n";
-
-    // Email headers
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-
-
-    // Send email and check if it is sent successfully
-    if (mail($to, $email_subject, $email_body, $headers)) {
-      // If email sent successfully, show success message
-      $status = 'success';
-      $message = 'Your message has been sent. Thank you!';
+    // Collect form data
+    $name = htmlspecialchars(trim($_POST['name']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $subject = htmlspecialchars(trim($_POST['subject']));
+    $message_content = htmlspecialchars(trim($_POST['message']));
+    if (empty($name) || empty($email) || empty($subject) || empty($message_content)) {
+        // If any field is empty, show an error message
+        $status = 'error';
+        $message = 'All fields are required. Please fill out the form completely.';
     } else {
-      // If email failed to send, show error message
-      $status = 'error';
-      $message = 'Sorry, something went wrong. Please try again.';
+
+        $query = "INSERT INTO contact_form (name, email, subject, message) VALUES (?, ?, ?, ?)";
+
+        // Initialize the statement
+        if ($stmt = mysqli_prepare($con, $query)) {
+            // Set the status (assuming 'pending' is the default)
+            $status = 'pending';
+
+            // Bind the parameters to the SQL query
+            mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $subject, $message_content);
+
+            // Execute the statement
+            if (mysqli_stmt_execute($stmt)) {
+                // If insertion is successful
+                $status = 'success';
+                $message = 'Your message has been sent and saved successfully!';
+            } else {
+                // If insertion fails
+                $status = 'error';
+                $message = 'There was an issue saving your message. Please try again later.';
+            }
+
+            // Close the prepared statement
+            mysqli_stmt_close($stmt);
+        } else {
+            // Error preparing the statement
+            $status = 'error';
+            $message = 'There was an error with the query. Please try again later.';
+        }
+
+        // Close the database connection
+        mysqli_close($con);
     }
-  }
 }
+
 include 'include/header.php';
-
 ?>
-
 
 <!-- ======= Contact Section ======= -->
 <section class="breadcrumbs">
@@ -142,10 +135,6 @@ include 'include/header.php';
         </form>
       </div>
 
-
-
-
-
     </div>
 
   </div>
@@ -153,12 +142,9 @@ include 'include/header.php';
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.637822095947!2d77.27848089999999!3d28.7004788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfdc9472425ad%3A0xd42dd4e280bdd606!2sAmulya%20rehabilitation%20Center!5e0!3m2!1sen!2sin!4v1733382326115!5m2!1sen!2sin" width="1400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-
 </div><!-- End Google Maps -->
-
-
 
 </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<?php include "include/footer.php";  ?>
+<?php include "include/footer.php"; ?>

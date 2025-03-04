@@ -34,7 +34,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-  
+
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <style>
@@ -132,9 +132,6 @@ if (session_status() == PHP_SESSION_NONE) {
 
 
           </li>
-
-
-
           <li><a href="Gallery.php">Gallery</a></li>
           <li><a href="appointment.php">Appointment</a></li>
 
@@ -146,8 +143,12 @@ if (session_status() == PHP_SESSION_NONE) {
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
-      <h4 class="button"><a href="appointment.php" style="color: white;">Appointment</a></h4>
+      <?php
+      if (empty($_SESSION['role']) || $_SESSION['role'] != 'admin') {
+        echo '<h4 class="button"><a href="appointment.php" style="color: white;">Appointment</a></h4>';
+      }
+      // 
+      ?>
 
     </div>
   </header><!-- End Header -->

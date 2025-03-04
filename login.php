@@ -1,8 +1,8 @@
 <?php
-ob_start(); // Start output buffering to prevent "headers already sent" errors
+ob_start();
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
 
 // Start the session only if it is not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -18,10 +18,7 @@ if ($con->connect_error) {
 }
 
 if (isset($_SESSION['role'])) {
-    // Debugging: Check session contents
     var_dump($_SESSION);
-
-    // Redirect if already logged in
     header('Location: appointmentData.php');
     exit();
 }
